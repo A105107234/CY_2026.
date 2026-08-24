@@ -3,56 +3,176 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CY 作品集</title>
+  <title>CY｜Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
+  <!-- Hero -->
   <header class="hero">
     <h1>Hi, 我是 CY</h1>
-    <p>電商營運出身，正在往 MarTech / 前端 / 全端工程師的路上走。</p>
+
+    <p>
+      從設計與電商營運出發，<br />
+      逐步走向前端開發。
+    </p>
+
+    <p class="hero-subtitle">
+      Design × E-commerce × Development
+    </p>
   </header>
 
+
   <main>
+
+    <!-- About -->
     <section class="intro">
       <h2>關於我</h2>
+
       <p>
-        目前在電商營運領域工作，負責平台管理、GA4 / META Pixel / GTM 追蹤設定與行銷數據分析。
-        近期投入前端與後端開發練習，實作了 LINE Bot、桌面小工具等專案，希望往技術職發展。
+        畢業於實踐大學工業產品設計系，目前從事電商平台營運。
+        過去累積設計、影像製作與網站相關經驗，在工作中逐漸接觸網站互動、
+        資料追蹤與流程優化，也開始對程式實作產生興趣。
+      </p>
+
+      <p>
+        目前透過個人專案學習 HTML、CSS、JavaScript，
+        並實際練習 API 串接、資料庫與部署。
+        我習慣從實際問題出發，嘗試透過設計、流程與程式找到解決方式。
       </p>
     </section>
 
+
+    <!-- Skills -->
+    <section class="skills">
+      <h2>目前學習與實作</h2>
+
+      <div class="skill-list">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>LINE Messaging API</span>
+        <span>Supabase</span>
+        <span>Google Gemini API</span>
+        <span>Render</span>
+        <span>Git / GitHub</span>
+        <span>GA4</span>
+        <span>GTM</span>
+        <span>Meta Pixel</span>
+      </div>
+    </section>
+
+
+    <!-- Projects -->
     <section class="projects">
       <h2>作品</h2>
+
       <div class="project-grid">
 
-        <article class="project-card">
-          <h3>品牌介紹頁</h3>
-          <p>原生 JavaScript 滾動觸發動畫、FAQ 手風琴、跑馬燈公告，純手刻無框架依賴。</p>
-          <div class="project-links">
-            <a href="projects/bodrato/index.html">查看 Demo</a>
-          </div>
-        </article>
 
+        <!-- Project 01 -->
         <article class="project-card">
+          <p class="project-number">01</p>
+
           <h3>LINE Bot 日文單字學習機器人</h3>
-          <p>整合 LINE Messaging API、Google Gemini AI、Supabase 與 Render，含 Flex Message 卡片設計與每日自動推播。</p>
+
+          <p>
+            為了實際練習 API 串接、資料庫與部署而開發的個人專案。
+            目前已上線並每日使用，持續優化功能與介面。
+          </p>
+
+          <p class="project-tech">
+            JavaScript · LINE Messaging API · Supabase ·
+            Google Gemini API · Render
+          </p>
+
           <div class="project-links">
-            <a href="projects/line-bot-vocab/index.html">查看說明</a>
+            <a href="projects/line-bot-vocab/index.html">
+              查看專案
+            </a>
           </div>
         </article>
 
-        <!-- 之後可以複製上面這個 <article> 區塊，加入更多作品 -->
+
+        <!-- Project 02 -->
+        <article class="project-card">
+          <p class="project-number">02</p>
+
+          <h3>品牌介紹頁</h3>
+
+          <p>
+            使用 HTML、CSS 與原生 JavaScript 製作的互動式品牌介紹頁，
+            實作滾動觸發動畫、FAQ 手風琴與跑馬燈公告，
+            練習 DOM 操作與事件處理。
+          </p>
+
+          <p class="project-tech">
+            HTML · CSS · JavaScript
+          </p>
+
+          <div class="project-links">
+            <a href="projects/bodrato/index.html">
+              查看 Demo
+            </a>
+          </div>
+        </article>
+
+
+        <!-- Project 03 -->
+        <article class="project-card">
+          <p class="project-number">03</p>
+
+          <h3>印單調整瀏覽器工具</h3>
+
+          <p>
+            發現公司出貨系統在列印時需要逐筆手動調整，
+            因此製作瀏覽器書籤工具，將原本的重複操作轉為一鍵執行，
+            協助改善工作流程。
+          </p>
+
+          <p class="project-tech">
+            JavaScript · Bookmarklet
+          </p>
+
+          <div class="project-links">
+            <a href="https://github.com/A105107234" target="_blank">
+              查看 GitHub
+            </a>
+          </div>
+        </article>
+
 
       </div>
     </section>
 
+
+    <!-- Contact -->
     <section class="contact">
       <h2>聯絡方式</h2>
-      <p>Email：your-email@example.com</p>
-      <p>GitHub：<a href="https://github.com/A105107234" target="_blank">A105107234</a></p>
+
+      <p>
+        GitHub：
+        <a
+          href="https://github.com/A105107234"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          A105107234
+        </a>
+      </p>
+
+      <!-- 這裡換成你的實際 Email -->
+      <p>
+        Email：
+        <a href="mailto:your-email@example.com">
+          your-email@example.com
+        </a>
+      </p>
     </section>
+
   </main>
+
 
   <footer>
     <p>&copy; 2026 CY</p>
