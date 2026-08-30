@@ -3,712 +3,284 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <meta
     name="description"
     content="CY 的前端開發作品集。從設計出發，透過學習前端開發、API 串接與自動化解決實際問題。"
   />
-
   <title>CY｜Frontend Developer Portfolio</title>
-
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <!-- =========================
-       Hero
-  ========================== -->
-
-  <header class="hero">
-
-    <div class="hero-inner">
-
-      <p class="hero-label">
-        DESIGN × E-COMMERCE × DEVELOPMENT
-      </p>
-
-      <h1>
-        Hi, 我是 CY
-      </h1>
-
-      <h2>
-        Frontend Developer
-      </h2>
-
-      <p class="hero-description">
-        從設計與電商營運出發，<br />
-        逐步走向前端開發，並透過程式解決實際問題。
-      </p>
-
-      <div class="hero-links">
-
-        <a
-          href="#projects"
-          class="hero-button hero-button-primary"
-        >
-          查看作品
-        </a>
-
-        <a
-          href="https://github.com/A105107234"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hero-button"
-        >
-          GitHub
-        </a>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  <!-- =========================
-       Navigation
-  ========================== -->
-
-  <nav class="nav">
-
+  <!-- Nav -->
+  <header class="site-header">
     <div class="nav-inner">
-
-      <a href="#" class="nav-logo">
-        CY
-      </a>
-
-      <div class="nav-links">
-
+      <a href="#" class="logo">CY</a>
+      <nav class="nav-links">
         <a href="#about">About</a>
-        <a href="#projects">Projects</a>
+        <a href="#works">Works</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
-
-      </div>
-
+      </nav>
     </div>
-
-  </nav>
-
+  </header>
 
   <main>
 
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">DESIGN → E-COMMERCE → FRONTEND</p>
+        <h1>Hi, 我是 CY</h1>
+        <p class="hero-sub">從設計與電商營運出發，逐步走向前端開發，並透過程式解決實際問題。</p>
+        <div class="hero-actions">
+          <a href="#works" class="btn btn-primary">↓ 查看作品 ↓</a>
+          <a href="https://github.com/A105107234" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub</a>
+        </div>
+      </div>
+    </section>
 
-    <!-- =========================
-         About
-    ========================== -->
-
-    <section id="about" class="section about">
-
-      <div class="section-heading">
-
-        <p class="section-number">
-          01
-        </p>
-
-        <h2>
-          關於我
-        </h2>
-
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="section-head">
+        <p class="kicker">About</p>
+        <h2>關於我</h2>
       </div>
 
-
-      <div class="about-content">
-
-        <div class="about-intro">
-
-          <p class="about-lead">
-            我畢業於實踐大學工業產品設計系，
-            目前從事電商行銷與營運相關工作。
-          </p>
-
-          <p>
-            過去累積設計、影像製作、電商網站與數位行銷經驗，
-            並在工作中逐漸接觸網站前端、資料追蹤與流程優化，
-            學習透過程式解決工作中遇到的問題。
-          </p>
-
-          <p>
-            目前持續學習 HTML、CSS、JavaScript，
-            並透過個人專案實際練習 API 串接、資料庫、
-            自動化工具與部署。
-          </p>
-
+      <div class="about-grid">
+        <div class="about-copy">
+          <p class="about-lead">畢業於 SCID 實踐大學工業產品設計系，目前從事電商行銷與營運的相關工作。</p>
+          <p>過去累積設計、影像製作、電商網站與數位行銷經驗，並在工作中逐漸接觸網站前端、資料追蹤與流程優化，學習透過程式解決工作中遇到的問題。</p>
+          <p>目前持續學習 HTML、CSS、JavaScript，並透過個人專案實際練習 API 串接、資料庫、自動化工具與部署。</p>
         </div>
 
+        <div class="about-card">
+          <p class="about-card-label">Current Focus</p>
+          <p class="about-card-title">Frontend Development</p>
+          <p class="about-card-text">HTML · CSS · JavaScript<br />API · Database · Deployment</p>
+        </div>
+      </div>
+    </section>
 
-        <div class="about-highlight">
+    <!-- Works -->
+    <section id="works" class="section">
+      <div class="section-head">
+        <p class="kicker">Works</p>
+        <h2>作品</h2>
+        <p class="section-lede">依照與前端開發的相關程度排序：程式專案、電商與網頁設計、影片製作。</p>
+      </div>
 
-          <p class="highlight-label">
-            CURRENT FOCUS
-          </p>
-
-          <p class="highlight-title">
-            Frontend Development
-          </p>
-
-          <p class="highlight-text">
-            HTML · CSS · JavaScript<br />
-            API · Database · Deployment
-          </p>
-
+      <!-- 01 程式專案 -->
+      <div class="works-group"> 
+        <div class="works-group-head">
+          <span class="tag tag-code">程式專案</span>
+          <p class="works-group-note">實際練習 API 串接、資料庫與部署的個人專案</p>
         </div>
 
+        <div class="work-grid">
+
+          <article class="work-card work-card-featured">
+            <div class="work-card-media">
+              <div class="media-placeholder">
+                <span>LINE 日文單字教學 BOT</span>
+                <p>Project Preview</p>
+              </div>
+            </div>
+            <div class="work-card-body">
+              <h3>LINE Bot 日文單字學習機器人</h3>
+              <p>使用 LINE Messaging API 建立互動式學習流程，串接 Supabase 資料庫與 Gemini API，並部署於 Render。</p>
+              <div class="work-tags">
+                <span>JavaScript</span>
+                <span>LINE Messaging API</span>
+                <span>Supabase</span>
+                <span>Gemini API</span>
+                <span>Render</span>
+              </div>
+              <div class="work-links">
+                <a href="projects/line-bot-vocab/index.html">查看專案 →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-card-media">
+              <div class="media-placeholder">
+                <span>印單調整工具</span>
+                <p>Project Preview</p>
+              </div>
+            </div>
+            <div class="work-card-body">
+              <h3>印單調整瀏覽器工具</h3>
+              <p>發現公司出貨系統列印時需逐筆手動調整排列，製作瀏覽器書籤將手動排列轉為一鍵執行完成。</p>
+              <div class="work-tags">
+                <span>JavaScript</span>
+                <span>Bookmarklet</span>
+                <span>Automation</span>
+              </div>
+              <div class="work-links">
+                <a href="https://github.com/A105107234/Shipping-Label-print-tools" target="_blank" rel="noopener noreferrer">GitHub →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-card-media">
+              <div class="media-placeholder">
+                <span>品牌介紹頁</span>
+                <p>Project Preview</p>
+              </div>
+            </div>
+            <div class="work-card-body">
+              <h3>電商頁面設計</h3>
+              <p>使用 HTML、CSS 與原生 JavaScript 製作互動式介紹頁，實作滾動觸發動畫、FAQ 手風琴與跑馬燈公告。</p>
+              <div class="work-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>DOM</span>
+              </div>
+              <div class="work-links">
+                <a href="projects/shop/index.html">查看 Demo →</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 02 電商 / 設計 / 行銷 -->
+      <div class="works-group">
+        <div class="works-group-head">
+          <span class="tag tag-commerce">電商 / 設計 / 行銷</span>
+          <p class="works-group-note">日常工作中負責的網站與行銷相關項目</p>
+        </div>
+
+        <div class="capability-grid">
+          <div class="capability-card">
+            <p class="capability-title">網頁設計規劃</p>
+            <p class="capability-text">首頁、品牌頁、特殊活動動態頁的頁面設計與架構規劃。</p>
+          </div>
+          <div class="capability-card">
+            <p class="capability-title">行銷活動設計</p>
+            <p class="capability-text">節慶活動企劃，商品組合規劃與EDM設計。</p>
+          </div>
+          <div class="capability-card">
+            <p class="capability-title">UTM / GA4 後台追蹤</p>
+            <p class="capability-text">建立 UTM 追蹤規則，透過 GA4 後台數據檢視成效並調整策略。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 影片剪輯 / 特效 -->
+      <div class="works-group">
+        <div class="works-group-head">
+          <span class="tag tag-video">影片剪輯 / 特效</span>
+          <p class="works-group-note">品牌與商業內容的影像製作經驗</p>
+        </div>
+
+        <div class="capability-grid">
+          <div class="capability-card">
+            <p class="capability-title">建案品牌影片</p>
+            <p class="capability-text">建案品牌形象影片的剪輯與特效製作。</p>
+          </div>
+          <div class="capability-card">
+            <p class="capability-title">生活分享型短片</p>
+            <p class="capability-text">生活風格短片企劃、拍攝與後製剪輯。</p>
+          </div>
+          <div class="capability-card">
+            <p class="capability-title">直播精華</p>
+            <p class="capability-text">直播內容剪輯整理為精華片段，用於社群發布。</p>
+          </div>
+        </div>
       </div>
 
     </section>
 
-
-    <!-- =========================
-         Projects
-    ========================== -->
-
-    <section id="projects" class="section projects">
-
-      <div class="section-heading">
-
-        <p class="section-number">
-          02
-        </p>
-
-        <h2>
-          作品
-        </h2>
-
-        <p class="section-description">
-          透過實際專案練習前端開發、API 串接、
-          自動化與問題解決。
-        </p>
-
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <div class="section-head">
+        <p class="kicker">Skills</p>
+        <h2>技術與工具</h2>
       </div>
-
-
-      <div class="project-list">
-
-
-        <!-- =====================
-             Project 01
-        ====================== -->
-
-        <article class="project-featured">
-
-          <div class="project-image project-image-esp32">
-
-            <div class="project-image-placeholder">
-
-              <span>
-                ESP32 PROJECT
-              </span>
-
-              <p>
-                Project Preview
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="project-featured-content">
-
-            <p class="project-number">
-              01
-            </p>
-
-            <h3>
-              ESP32 電子雞
-            </h3>
-
-            <p class="project-description">
-              使用 LILYGO ESP32 開發板製作的互動式電子雞。
-              結合硬體、程式邏輯與使用者互動，
-              作為探索 Web Development 之外的實作專案。
-            </p>
-
-
-            <div class="project-tags">
-
-              <span>ESP32</span>
-              <span>Arduino</span>
-              <span>JavaScript</span>
-              <span>Hardware</span>
-
-            </div>
-
-
-            <div class="project-links">
-
-              <a href="#">
-                專案介紹 →
-              </a>
-
-              <a href="#">
-                GitHub →
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- =====================
-             Project 02
-        ====================== -->
-
-        <article class="project-card">
-
-          <div class="project-card-image">
-
-            <div class="project-image-placeholder">
-
-              <span>
-                LINE BOT
-              </span>
-
-              <p>
-                Project Preview
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="project-card-content">
-
-            <p class="project-number">
-              02
-            </p>
-
-            <h3>
-              LINE Bot 日文單字學習機器人
-            </h3>
-
-            <p>
-              為了實際練習 API 串接、資料庫與部署而開發的個人專案。
-              使用 LINE Messaging API 建立互動式學習流程，
-              並串接 Supabase 與 Gemini API。
-            </p>
-
-
-            <div class="project-tags">
-
-              <span>JavaScript</span>
-              <span>LINE Messaging API</span>
-              <span>Supabase</span>
-              <span>Gemini API</span>
-              <span>Render</span>
-
-            </div>
-
-
-            <div class="project-links">
-
-              <a href="projects/line-bot-vocab/index.html">
-                查看專案 →
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- =====================
-             Project 03
-        ====================== -->
-
-        <article class="project-card">
-
-          <div class="project-card-image">
-
-            <div class="project-image-placeholder">
-
-              <span>
-                BOOKMARKLET
-              </span>
-
-              <p>
-                Project Preview
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="project-card-content">
-
-            <p class="project-number">
-              03
-            </p>
-
-            <h3>
-              印單調整瀏覽器工具
-            </h3>
-
-            <p>
-              發現公司出貨系統在列印時需要逐筆手動調整，
-              因此製作瀏覽器 Bookmarklet，
-              將原本重複的操作轉為一鍵執行，
-              協助改善工作流程。
-            </p>
-
-
-            <div class="project-tags">
-
-              <span>JavaScript</span>
-              <span>Bookmarklet</span>
-              <span>Automation</span>
-
-            </div>
-
-
-            <div class="project-links">
-
-              <a
-                href="https://github.com/A105107234"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                查看 GitHub →
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- =====================
-             Project 04
-        ====================== -->
-
-        <article class="project-card">
-
-          <div class="project-card-image">
-
-            <div class="project-image-placeholder">
-
-              <span>
-                BRAND WEBSITE
-              </span>
-
-              <p>
-                Project Preview
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="project-card-content">
-
-            <p class="project-number">
-              04
-            </p>
-
-            <h3>
-              品牌介紹頁
-            </h3>
-
-            <p>
-              使用 HTML、CSS 與原生 JavaScript
-              製作互動式品牌介紹頁，
-              實作滾動觸發動畫、FAQ 手風琴與跑馬燈公告，
-              練習 DOM 操作與事件處理。
-            </p>
-
-
-            <div class="project-tags">
-
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>DOM</span>
-
-            </div>
-
-
-            <div class="project-links">
-
-              <a href="projects/bodrato/index.html">
-                查看 Demo →
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         Skills
-    ========================== -->
-
-    <section id="skills" class="section skills">
-
-      <div class="section-heading">
-
-        <p class="section-number">
-          03
-        </p>
-
-        <h2>
-          技術與工具
-        </h2>
-
-      </div>
-
 
       <div class="skills-grid">
-
-
-        <div class="skill-group">
-
-          <p class="skill-group-number">
-            01
-          </p>
-
-          <h3>
-            Frontend
-          </h3>
-
-          <p>
-            HTML · CSS · JavaScript<br />
-            DOM · Responsive Web Design
-          </p>
-
+        <div class="skill-card">
+          <p class="skill-title">Frontend</p>
+          <p class="skill-text">HTML · CSS · JavaScript<br />DOM · Responsive Web Design</p>
         </div>
-
-
-        <div class="skill-group">
-
-          <p class="skill-group-number">
-            02
-          </p>
-
-          <h3>
-            API / Backend
-          </h3>
-
-          <p>
-            LINE Messaging API<br />
-            Supabase · Gemini API
-          </p>
-
+        <div class="skill-card">
+          <p class="skill-title">API / Backend</p>
+          <p class="skill-text">LINE Messaging API<br />Supabase · Gemini API</p>
         </div>
-
-
-        <div class="skill-group">
-
-          <p class="skill-group-number">
-            03
-          </p>
-
-          <h3>
-            Tools / Deployment
-          </h3>
-
-          <p>
-            Git · GitHub · Render
-          </p>
-
+        <div class="skill-card">
+          <p class="skill-title">Tools / Deployment</p>
+          <p class="skill-text">Git · GitHub · Render</p>
         </div>
-
-
-        <div class="skill-group">
-
-          <p class="skill-group-number">
-            04
-          </p>
-
-          <h3>
-            Analytics
-          </h3>
-
-          <p>
-            GA4 · GTM · Meta Pixel
-          </p>
-
+        <div class="skill-card">
+          <p class="skill-title">Analytics</p>
+          <p class="skill-text">GA4 · GTM · Meta Pixel</p>
         </div>
-
-
-        <div class="skill-group">
-
-          <p class="skill-group-number">
-            05
-          </p>
-
-          <h3>
-            Design
-          </h3>
-
-          <p>
-            Illustrator · Photoshop<br />
-            After Effects · Figma
-          </p>
-
+        <div class="skill-card">
+          <p class="skill-title">Design</p>
+          <p class="skill-text">Illustrator · Photoshop<br />After Effects · Figma</p>
         </div>
-
-
       </div>
-
     </section>
 
-
-    <!-- =========================
-         Experience
-    ========================== -->
-
-    <section id="experience" class="section experience">
-
-      <div class="section-heading">
-
-        <p class="section-number">
-          04
-        </p>
-
-        <h2>
-          經歷
-        </h2>
-
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <div class="section-head">
+        <p class="kicker">Experience</p>
+        <h2>經歷</h2>
       </div>
 
-
-      <div class="experience-item">
-
-        <div class="experience-meta">
-
-          <p>
-            E-COMMERCE
-          </p>
-
-          <p>
-            202X — Present
-          </p>
-
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <p>E-COMMERCE</p>
+          <p>202X — Present</p>
         </div>
-
-
-        <div class="experience-content">
-
-          <h3>
-            電商行銷企劃
-          </h3>
-
-          <p class="experience-company">
-            電商平台營運
-          </p>
-
-          <p>
-            負責電商網站後台、商品資料整理、
-            商品視覺製作、網站前端內容、
-            文案與數位行銷相關工作。
-          </p>
-
-          <p>
-            工作過程中接觸網站前端、GA4、
-            GTM 與 Meta Pixel，也開始將 JavaScript
-            與自動化工具應用於實際工作流程。
-          </p>
-
+        <div class="timeline-body">
+          <h3>電商行銷企劃</h3>
+          <p class="timeline-company">電商平台營運</p>
+          <p>負責電商網站後台、商品資料整理、商品視覺製作、網站前端內容、文案與數位行銷相關工作。</p>
+          <p>工作過程中接觸網站前端、GA4、GTM 與 Meta Pixel，也開始將 JavaScript 與自動化工具應用於實際工作流程。</p>
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =========================
-         Contact
-    ========================== -->
-
-    <section id="contact" class="section contact">
-
-      <div class="section-heading">
-
-        <p class="section-number">
-          05
-        </p>
-
-        <h2>
-          聯絡方式
-        </h2>
-
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="section-head">
+        <p class="kicker">Contact</p>
+        <h2>聯絡方式</h2>
       </div>
 
-
-      <div class="contact-content">
-
-        <p class="contact-lead">
-          如果你正在尋找 Frontend Developer，
-          歡迎透過以下方式與我聯絡。
-        </p>
-
+      <div class="contact-wrap">
+        <p class="contact-lead">歡迎透過以下方式與我聯絡。</p>
 
         <div class="contact-links">
-
-          <a
-            href="https://github.com/A105107234"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://github.com/A105107234" target="_blank" rel="noopener noreferrer">
             <span>GitHub</span>
             <span>@A105107234 →</span>
           </a>
-
-
           <a href="mailto:your-email@example.com">
-
             <span>Email</span>
             <span>your-email@example.com →</span>
-
           </a>
-
-
           <a href="#">
-
             <span>Resume</span>
-            <span>View Resume →</span>
-
+            <span>View Resume ↑</span>
           </a>
-
         </div>
-
       </div>
-
     </section>
-
 
   </main>
 
-
-  <!-- =========================
-       Footer
-  ========================== -->
-
   <footer>
-
-    <p>
-      © 2026 CY
-    </p>
-
+    <p>© 2026 CY</p>
   </footer>
-
 
 </body>
 </html>
