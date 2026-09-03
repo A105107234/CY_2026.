@@ -253,17 +253,17 @@
       </div>
 
       <div class="contact-wrap">
-        <p class="contact-lead"> </p>
+        <p class="contact-lead">如果你正在尋找適合的夥伴，歡迎透過以下方式與我聯絡。</p>
 
         <div class="contact-links">
           <a href="https://github.com/A105107234" target="_blank" rel="noopener noreferrer">
             <span>GitHub</span>
             <span>@A105107234 →</span>
           </a>
-          <!--<a href="mailto:your-email@example.com">
+          <a href="#" id="email-link" class="js-email-copy" data-user="your-email" data-domain="example.com">
             <span>Email</span>
-            <span>your-email@example.com →</span>
-          </a>-->
+            <span id="email-display">點擊複製 →</span>
+          </a>
           <a href="#">
             <span>Resume</span>
             <span>View Resume ↑</span>
@@ -277,6 +277,25 @@
   <footer>
     <p>© 2026 CY</p>
   </footer>
+
+  <script>
+    const emailLink = document.getElementById('email-link');
+    const emailDisplay = document.getElementById('email-display');
+
+    emailLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      const user = emailLink.dataset.user;
+      const domain = emailLink.dataset.domain;
+      const email = user + '@' + domain;
+
+      navigator.clipboard.writeText(email).then(function () {
+        emailDisplay.textContent = '已複製 ' + email;
+        setTimeout(function () {
+          emailDisplay.textContent = '點擊複製 →';
+        }, 2000);
+      });
+    });
+  </script>
 
 </body>
 </html>
