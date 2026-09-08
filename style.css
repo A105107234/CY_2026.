@@ -12,11 +12,11 @@
   --ink-faint: #9497A0;
 
   --accent: #005CAF;       /* 程式 — 瑠璃 */
-  --accent-soft: #dcf2ff;   /* 勿忘草拉淡 */
+  --accent-soft: #dcf2ff;  /* 勿忘草拉淡 */
   --amber: #FFC408;        /* 電商 — 籐黃 */
   --amber-soft: #fffaee;   /* 淺黃拉淡 */
   --rose: #6F3381;         /* 影片 — 菖蒲 */
-  --rose-soft: #f1edff;   /*楝拉淡*/
+  --rose-soft: #f1edff;    /* 楝拉淡 */
 
   --line: #ECECEA;
 
@@ -362,7 +362,7 @@ main {
 }
 .work-links a:hover { color: var(--accent); }
 
-/* Capability cards (電商 / 影片 — no live links) */
+/* Capability cards (電商 / 影片) — flip on hover */
 
 .capability-grid {
   display: grid;
@@ -371,21 +371,66 @@ main {
 }
 
 .capability-card {
+  perspective: 1200px;
+  height: 168px;
+}
+
+.capability-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.55s cubic-bezier(0.4, 0.1, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.capability-card:hover .capability-card-inner,
+.capability-card:focus-within .capability-card-inner {
+  transform: rotateY(180deg);
+}
+
+.capability-card-front,
+.capability-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
   background: var(--surface);
   border-radius: var(--radius-sm);
-  padding: 24px;
   box-shadow: 0 1px 2px rgba(20, 20, 30, 0.04);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.capability-card-back {
+  transform: rotateY(180deg);
 }
 
 .capability-title {
   font-weight: 700;
   font-size: 1rem;
-  margin-bottom: 10px;
 }
 
 .capability-text {
   color: var(--ink-soft);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.capability-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--rose);
+  border-bottom: 2px solid var(--rose);
+  padding-bottom: 1px;
+  width: fit-content;
+}
+.capability-link:hover { opacity: 0.75; }
+
+@media (prefers-reduced-motion: reduce) {
+  .capability-card-inner { transition: none; }
 }
 
 /* =========================
@@ -481,6 +526,29 @@ footer {
 }
 
 /* =========================
+   Scroll reveal
+========================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* =========================
    Mobile
 ========================= */
 
@@ -496,6 +564,7 @@ footer {
   .work-card-featured { grid-template-columns: 1fr; }
 
   .capability-grid { grid-template-columns: 1fr; }
+  .capability-card { height: 150px; }
 
   .timeline-item { grid-template-columns: 1fr; gap: 16px; }
 }
