@@ -16,13 +16,18 @@
   <header class="site-header">
     <div class="nav-inner">
       <a href="#" class="logo">CY</a>
-      <nav class="nav-links">
+      <nav class="nav-links" id="nav-links">
         <a href="#about">About</a>
         <a href="#works">Works</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="開啟選單" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
@@ -205,7 +210,7 @@
               </div>
               <div class="capability-card-back">
                 <p class="capability-text">建案品牌形象影片的剪輯與特效製作。</p>
-                <a class="capability-link" href="https://www.youtube.com/playlist?list=PLhkuRQ6vcK8rfW8aEy3iX92bvZOuIB56M" target="_blank" rel="noopener noreferrer">在 YouTube 觀看 →</a>
+                <a class="capability-link" href="https://www.youtube.com/playlist?list=YOUR_PLAYLIST_ID" target="_blank" rel="noopener noreferrer">在 YouTube 觀看 →</a>
               </div>
             </div>
           </div>
@@ -216,7 +221,7 @@
               </div>
               <div class="capability-card-back">
                 <p class="capability-text">生活風格短片企劃、拍攝與後製剪輯。</p>
-                <a class="capability-link" href="https://www.youtube.com/playlist?list=PLhkuRQ6vcK8rhcJOtEsPsMV8XOef7As1w" target="_blank" rel="noopener noreferrer">在 YouTube 觀看 →</a>
+                <a class="capability-link" href="https://www.youtube.com/playlist?list=YOUR_PLAYLIST_ID" target="_blank" rel="noopener noreferrer">在 YouTube 觀看 →</a>
               </div>
             </div>
           </div>
@@ -318,6 +323,25 @@
   </footer>
 
   <script>
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinksEl = document.getElementById('nav-links');
+
+    navToggle.addEventListener('click', function () {
+      const isOpen = navLinksEl.classList.toggle('is-open');
+      navToggle.classList.toggle('is-open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    navLinksEl.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinksEl.classList.remove('is-open');
+        navToggle.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+  <script>
     const revealItems = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -346,7 +370,7 @@
       navigator.clipboard.writeText(email).then(function () {
         emailDisplay.textContent = '已複製 ' + email;
         setTimeout(function () {
-          emailDisplay.textContent = '點擊複製 ✓';
+          emailDisplay.textContent = '點擊複製 →';
         }, 2000);
       });
     });
