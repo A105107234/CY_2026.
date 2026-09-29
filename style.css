@@ -12,11 +12,11 @@
   --ink-faint: #9497A0;
 
   --accent: #005CAF;       /* 程式 — 瑠璃 */
-  --accent-soft: #dcf2ff;  /* 勿忘草拉淡 */
+  --accent-soft: #dcf2ff;   /* 勿忘草拉淡 */
   --amber: #FFC408;        /* 電商 — 籐黃 */
   --amber-soft: #fffaee;   /* 淺黃拉淡 */
   --rose: #6F3381;         /* 影片 — 菖蒲 */
-  --rose-soft: #f1edff;    /* 楝拉淡 */
+  --rose-soft: #f1edff;   /*楝拉淡*/
 
   --line: #ECECEA;
 
@@ -30,7 +30,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { /* scroll-behavior 交給 Lenis (JS) 控制，這裡不設 smooth，避免兩邊搶控制權 */ }
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
@@ -93,32 +93,6 @@ img { max-width: 100%; display: block; }
 
 .nav-links a { transition: color 0.15s ease; }
 .nav-links a:hover { color: var(--accent); }
-
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 30px;
-  height: 30px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.nav-toggle span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle.is-open span:nth-child(2) { opacity: 0; }
-.nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* =========================
    Hero
@@ -388,18 +362,7 @@ main {
 }
 .work-links a:hover { color: var(--accent); }
 
-/* 宣言句 — 穿插在 Works 區塊，打斷版面節奏 */
-.manifesto {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  max-width: 22ch;
-  margin: 72px 0 0;
-}
-
-/* Capability cards (電商 / 影片) — flip on hover */
+/* Capability cards (電商 / 影片 — no live links) */
 
 .capability-grid {
   display: grid;
@@ -408,66 +371,21 @@ main {
 }
 
 .capability-card {
-  perspective: 1200px;
-  height: 168px;
-}
-
-.capability-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.55s cubic-bezier(0.4, 0.1, 0.2, 1);
-  transform-style: preserve-3d;
-}
-
-.capability-card:hover .capability-card-inner,
-.capability-card:focus-within .capability-card-inner {
-  transform: rotateY(180deg);
-}
-
-.capability-card-front,
-.capability-card-back {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
   background: var(--surface);
   border-radius: var(--radius-sm);
-  box-shadow: 0 1px 2px rgba(20, 20, 30, 0.04);
   padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.capability-card-back {
-  transform: rotateY(180deg);
+  box-shadow: 0 1px 2px rgba(20, 20, 30, 0.04);
 }
 
 .capability-title {
   font-weight: 700;
   font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 .capability-text {
   color: var(--ink-soft);
-  font-size: 0.88rem;
-  line-height: 1.7;
-}
-
-.capability-link {
-  display: inline-block;
-  margin-top: 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--rose);
-  border-bottom: 2px solid var(--rose);
-  padding-bottom: 1px;
-  width: fit-content;
-}
-.capability-link:hover { opacity: 0.75; }
-
-@media (prefers-reduced-motion: reduce) {
-  .capability-card-inner { transition: none; }
+  font-size: 0.9rem;
 }
 
 /* =========================
@@ -563,54 +481,11 @@ footer {
 }
 
 /* =========================
-   Scroll reveal
-========================= */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-/* =========================
    Mobile
 ========================= */
 
 @media (max-width: 760px) {
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    gap: 0;
-    background: var(--surface);
-    border-top: 1px solid var(--line);
-    box-shadow: 0 12px 24px rgba(20, 20, 30, 0.08);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-  .nav-links.is-open { max-height: 320px; }
-  .nav-links a {
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--line);
-  }
-  .nav-toggle { display: flex; }
-
+  .nav-links { display: none; }
   .hero { padding: 60px 20px 44px; }
   main { padding: 0 20px; }
   .section { padding: 64px 0; }
@@ -621,32 +496,6 @@ footer {
   .work-card-featured { grid-template-columns: 1fr; }
 
   .capability-grid { grid-template-columns: 1fr; }
-
-  /* mobile: no hover/flip available, so unfold both faces instead of flipping */
-  .capability-card {
-    height: auto;
-    perspective: none;
-    background: var(--surface);
-    border-radius: var(--radius-sm);
-    box-shadow: 0 1px 2px rgba(20, 20, 30, 0.04);
-    padding: 20px;
-  }
-  .capability-card-inner {
-    position: static;
-    display: block;
-    transform: none !important;
-    transition: none;
-  }
-  .capability-card-front,
-  .capability-card-back {
-    position: static;
-    backface-visibility: visible;
-    transform: none;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 0;
-  }
-  .capability-card-front { padding-bottom: 10px; }
 
   .timeline-item { grid-template-columns: 1fr; gap: 16px; }
 }
