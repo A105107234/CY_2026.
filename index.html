@@ -8,9 +8,100 @@
     content="CY 的前端開發作品集。從設計出發，透過學習前端開發、API 串接與自動化解決實際問題。"
   />
   <title>CY｜Frontend Developer Portfolio</title>
+
+  <!-- 字型：改用 preconnect + link，避免 CSS @import 造成串聯阻塞 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* body 只在載入動畫跑的時候鎖住捲動，跑完後解除 */
+body.is-loading {
+  overflow: hidden;
+  height: 100vh;
+}
+/* LOGO */
+#logo-c {
+  display: inline-block;
+  animation: rotateCCW 1s ease-in-out;
+}
+
+@keyframes rotateCCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+/* ===== 兩片色塊，從中間往左右滑開 ===== */
+.panel {
+  position: fixed;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: #111;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+#panel-left  { left: 0; }
+#panel-left {
+  left: 0;
+  justify-content: flex-end; /* 內容靠右貼齊，剛好貼在螢幕正中央那條線上 */
+}
+#panel-right { right: 0; }
+
+.panel.open#panel-left  { transform: translateX(-100%); }
+.panel.open#panel-right { transform: translateX(100%); }
+
+#panel-logo {
+  color: #f5f5f0;
+  font-size: clamp(20px, 4vw, 32px);
+  font-weight: 700;
+  letter-spacing: 3px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== 歡迎文字，蓋在真正內容上面，顯示完自己淡出 ===== */
+#content {
+  position: fixed;
+  inset: 0;
+  z-index: 9998; /* 比色塊低一層，但蓋住底下的真正網站內容 */
+  background: #f5f5f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none; /* 淡出後不擋住底下的點擊 */
+}
+
+#content.show { opacity: 1; }
+#content.fade-out { opacity: 0; }
+
+#content h1 { font-size: clamp(28px, 6vw, 56px); }
+</style>
+
 </head>
 <body>
+
+  <!--LOADING-->
+<div class="panel" id="panel-left">
+  <div id="panel-logo">
+    <span id="logo-c">C</span>
+  </div>
+</div>
+<div class="panel" id="panel-right"></div>
+
+ 
+  <div id="content">
+    <h1>HELLO WORLD！</h1>
+  </div>
 
   <!-- Nav -->
   <header class="site-header">
@@ -77,7 +168,7 @@
       </div>
 
       <!-- 01 程式專案 -->
-      <div class="works-group"> 
+      <div class="works-group">
         <div class="works-group-head">
           <span class="tag tag-code">程式專案</span>
           <p class="works-group-note">實際練習 API 串接、資料庫與部署的個人專案</p>
@@ -153,9 +244,6 @@
 
         </div>
       </div>
-
-      <!-- 宣言句 -->
-      <p class="manifesto reveal"></p>
 
       <!-- 02 電商 / 設計 / 行銷 -->
       <div class="works-group">
@@ -307,6 +395,7 @@
             <span>GitHub</span>
             <span>@A105107234 →</span>
           </a>
+          <!-- TODO: 把 data-user / data-domain 換成你真正的 email -->
           <a href="#" id="email-link" class="js-email-copy" data-user="your-email" data-domain="example.com">
             <span>Email</span>
             <span id="email-display">點擊複製 →</span>
@@ -325,20 +414,47 @@
     <p>© 2026 CY</p>
   </footer>
 
-  <!-- 平滑滾動函式庫 Lenis（只在桌機／滑鼠裝置啟用，手機保留原生觸控滾動） -->
-  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css" />
-  <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" crossorigin="anonymous"></script>
   <script>
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
-    if (!isTouchDevice) {
-      // autoRaf: true 讓 Lenis 自己管理動畫迴圈；anchors: true 讓 #about 這類錨點連結也吃到平滑滾動
-      // Lenis 預設就會自動偵測「減少動態效果」設定，不用自己再判斷一次
-      new Lenis({ autoRaf: true, anchors: true });
-    }
-  </script>
+    //LOADING
+    document.body.classList.add('is-loading'); // 一開始鎖住捲動
 
-  <script>
+const minDisplayTime = 900;    // 色塊 + Logo 停留多久
+const contentShowTime = 1500;  // 歡迎文字停留多久後開始淡出
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const left = document.getElementById('panel-left');
+    const right = document.getElementById('panel-right');
+    const logo = document.getElementById('panel-logo');
+    const content = document.getElementById('content');
+
+    // 1. 色塊滑開，露出歡迎文字
+    logo.style.opacity = '0';
+    left.classList.add('open');
+    right.classList.add('open');
+    content.classList.add('show');
+
+    setTimeout(() => {
+      left.remove();
+      right.remove();
+    }, 1000);
+
+    // 2. 歡迎文字停留一下之後，淡出、消失、解鎖捲動
+    setTimeout(() => {
+      content.classList.remove('show');
+      content.classList.add('fade-out');
+
+      setTimeout(() => {
+        content.remove();
+        document.body.classList.remove('is-loading'); // 解鎖捲動
+      }, 600);
+    }, contentShowTime);
+
+  }, minDisplayTime);
+});
+
+    // 手機版選單開關
     const navToggle = document.getElementById('nav-toggle');
     const navLinksEl = document.getElementById('nav-links');
 
@@ -358,13 +474,18 @@
   </script>
 
   <script>
+    // 滾動進場動畫
+    // 動畫播完後移除 reveal class，讓元件回到自己原本的 hover 過渡設定
     const revealItems = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        el.classList.add('is-visible');
+        revealObserver.unobserve(el);
+        setTimeout(function () {
+          el.classList.remove('reveal', 'is-visible');
+        }, 700);
       });
     }, { threshold: 0.15 });
 
@@ -374,6 +495,7 @@
   </script>
 
   <script>
+    // Email 點擊複製
     const emailLink = document.getElementById('email-link');
     const emailDisplay = document.getElementById('email-display');
 
