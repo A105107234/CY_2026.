@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>易經解卦</title>
+<style>
+:root{--bg:#090714;--fg:#e6f7ff;--mut:#9a96c4;--cy:#00f0ff;--mag:#ff2bd6;--yel:#fcee0a;--card:#141032}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.7}
+main{max-width:520px;margin:0 auto;padding:24px 16px 56px}
+h1{font-size:22px;margin:0 0 4px;color:var(--cy)}
+.sub{color:var(--mut);font-size:14px;margin:0 0 20px}
+.pair{display:flex;gap:12px;justify-content:center;align-items:flex-start;margin-bottom:20px}
+.card{flex:1;background:var(--card);padding:16px 12px;text-align:center}
+.card h2{font-size:14px;color:var(--mut);margin:0 0 10px;font-weight:400}
+.hex{display:flex;flex-direction:column;gap:6px;width:96px;margin:0 auto 12px}
+.line{height:10px;background:var(--cy)}
+.line.yin{background:linear-gradient(90deg,var(--cy) 0 42%,transparent 42% 58%,var(--cy) 58%)}
+.line.mov{background:var(--mag)}
+.line.yin.mov{background:linear-gradient(90deg,var(--mag) 0 42%,transparent 42% 58%,var(--mag) 58%)}
+.line.new{background:var(--yel)}
+.line.yin.new{background:linear-gradient(90deg,var(--yel) 0 42%,transparent 42% 58%,var(--yel) 58%)}
+.name{font-size:34px;font-weight:700;line-height:1.2}
+.num{font-size:13px;color:var(--mut)}
+.arrow{align-self:center;color:var(--yel);font-size:20px}
+section{background:var(--card);padding:14px 16px;margin-bottom:12px}
+section h3{margin:0 0 6px;font-size:15px;color:var(--yel)}
+section p{margin:0;font-size:15px}
+.mov-note{color:var(--mag);text-align:center;margin:0 0 16px;font-size:15px}
+.err{color:var(--mag)}
+.foot{color:var(--mut);font-size:13px;margin-top:20px}
+</style>
+</head>
+<body>
+<main>
+<h1>易經解卦</h1>
+<p class="sub" id="sub">讀取中⋯</p>
+<div id="out"></div>
+<p class="foot">解讀僅供參考與反思，不是預測，重大決定請勿只憑卦象。</p>
+</main>
+<script>
+const KW=[[2,16,8,45,23,35,20,12],[24,51,3,17,27,21,42,25],[7,40,29,47,4,64,59,6],[19,54,60,58,41,38,61,10],[15,62,39,31,52,56,53,33],[36,55,63,49,22,30,37,13],[46,32,48,28,18,50,57,44],[11,34,5,43,26,14,9,1]];
+const ZH=['','乾','坤','屯','蒙','需','訟','師','比','小畜','履','泰','否','同人','大有','謙','豫','隨','蠱','臨','觀','噬嗑','賁','剝','復','無妄','大畜','頤','大過','坎','離','咸','恆','遯','大壯','晉','明夷','家人','睽','蹇','解','損','益','夬','姤','萃','升','困','井','革','鼎','震','艮','漸','歸妹','豐','旅','巽','兌','渙','節','中孚','小過','既濟','未濟'];
+const POS=['初','二','三','四','五','上'];
+const INV={};KW.forEach((row,lo)=>row.forEach((n,up)=>{INV[n]=[lo,up]}));
+const yangOf=n=>{const [lo,up]=INV[n];return [0,1,2,3,4,5].map(i=>i<3?(lo>>i)&1:(up>>(i-3))&1)};
+const hexNum=y=>KW[y[0]|y[1]<<1|y[2]<<2][y[3]|y[4]<<1|y[5]<<2];
+
+const q=new URLSearchParams(location.search);
+const b=parseInt(q.get('b'),10),m=parseInt(q.get('m')||'0',10);
+const out=document.getElementById('out'),sub=document.getElementById('sub');
+
+function hexCard(label,n,cls){
+  const y=yangOf(n),mv=[0,1,2,3,4,5].map(i=>(m>>i)&1);
+  const lines=[5,4,3,2,1,0].map(i=>`<div class="line ${y[i]?'':'yin'} ${mv[i]?cls:''}"></div>`).join('');
+  return `<div class="card"><h2>${label}</h2><div class="hex">${lines}</div><div class="name">${ZH[n]}</div><div class="num">第 ${n} 卦</div></div>`;
+}
+function add(title,text){
+  const s=document.createElement('section');
+  const h=document.createElement('h3');h.textContent=title;
+  const p=document.createElement('p');p.textContent=text;
+  s.append(h,p);out.append(s);
+}
+
+if(!(b>=1&&b<=64)||!(m>=0&&m<=63)){
+  sub.textContent='';out.innerHTML='<p class="err">網址參數不正確。正確格式範例：?b=57&amp;m=32</p>';
+}else{
+  const y=yangOf(b),mv=[0,1,2,3,4,5].filter(i=>(m>>i)&1);
+  const z=hexNum(y.map((v,i)=>(m>>i)&1?1-v:v));
+  sub.textContent=m?'本卦 '+ZH[b]+' → 之卦 '+ZH[z]:'本卦 '+ZH[b]+'（無變爻）';
+  out.innerHTML='<div class="pair">'+hexCard('本卦',b,'mov')+(m?'<div class="arrow">▶</div>'+hexCard('之卦',z,'new'):'')+'</div>'
+    +'<p class="mov-note">'+(m?'變爻：'+mv.map(i=>POS[i]+'爻').join('、'):'無變爻，以本卦卦辭為準')+'</p>';
+  // 若同一資料夾有 hexagrams.json 就顯示卦辭與爻辭，沒有就略過
+  fetch('hexagrams.json').then(r=>r.ok?r.json():null).then(d=>{
+    if(!d)return;
+    const hb=d[b],hz=d[z];
+    if(hb){
+      if(hb.judgement)add('本卦「'+ZH[b]+'」卦辭',hb.judgement);
+      mv.forEach(i=>{if(hb.lines&&hb.lines[i])add(ZH[b]+'卦 '+POS[i]+'爻',hb.lines[i])});
+      if(hb.plain)add('白話參考',hb.plain);
+    }
+    if(m&&hz&&hz.judgement)add('之卦「'+ZH[z]+'」卦辭',hz.judgement);
+  }).catch(()=>{});
+}
+</script>
+</body>
+</html>
